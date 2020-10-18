@@ -3,13 +3,10 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  },
+const modules = {};
+
+const store = new Vuex.Store({
+  modules,
 });
+
+export default store;
