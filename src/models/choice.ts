@@ -2,7 +2,7 @@ export const LOSE_FACTOR = -1;
 export const WIN_FACTOR = 1;
 export const NUL_FACTOR = 0;
 
-class Choice {
+export class Choice {
   private readonly weaknesses: Choice[] = [];
 
   private readonly advantages: Choice[] = [];
@@ -36,3 +36,5 @@ SCISSORS.setWeaknesses([ROCK]);
 ROCK.setAdvantages([SCISSORS]);
 PAPER.setAdvantages([ROCK]);
 SCISSORS.setAdvantages([PAPER]);
+
+export const CHOICES = [ROCK, PAPER, SCISSORS];
