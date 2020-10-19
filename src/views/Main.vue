@@ -1,6 +1,6 @@
 <template>
   <div>
-    Score
+    Score: {{ score }}
     Rules
 
     You Picked
@@ -17,3 +17,15 @@
     </div>
   </div>
 </template>
+
+<script lang="ts">
+import { scoreStore } from '@/store';
+import { Vue, Component } from 'vue-property-decorator';
+
+@Component
+export default class Main extends Vue {
+  get score(): number {
+    return scoreStore.score;
+  }
+}
+</script>
