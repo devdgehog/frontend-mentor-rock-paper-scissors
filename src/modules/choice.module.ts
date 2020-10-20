@@ -9,19 +9,52 @@ import { Choice } from '@/models/choice';
 
 @Module({ namespaced: true, name: 'choice' })
 export default class ScoreModule extends VuexModule {
-    private choice: Choice | null = null;
+    private userChoice: Choice | null = null;
 
-    get userChoice() {
-      return this.choice;
+    private houseChoice: Choice | null = null;
+
+    get getUserChoice() {
+      return this.userChoice;
+    }
+
+    get getHouseChoice() {
+      return this.houseChoice;
+    }
+
+    get hasPlayed() {
+      return this.userChoice !== null && this.houseChoice !== null;
+    }
+
+    get result() {
+      if (!this.userChoice || !this.houseChoice) {
+        return 0;
+      }
+      return this.userChoice.getResult(this.houseChoice);
     }
 
     @Mutation
-    private commitChoice(choice: Choice) {
-      this.choice = choice;
+    private commitHouseChoice(choice: Choice | null) {
+      this.houseChoice = choice;
     }
 
     @Action
-    public setChoice(choice: Choice) {
-      this.commitChoice(choice);
+    public setHouseChoice(choice: Choice) {
+      this.commitHouseChoice(choice);
+    }
+
+    @Mutation
+    private commitUserChoice(choice: Choice | null) {
+      this.userChoice = choice;
+    }
+
+    @Action
+    public setUserChoice(choice: Choice) {
+      this.commitUserChoice(choice);
+    }
+
+    @Action
+    public resetChoices() {
+      this.commitHouseChoice(null);
+      this.commitUserChoice(null);
     }
 }

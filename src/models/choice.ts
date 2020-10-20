@@ -3,9 +3,15 @@ export const WIN_FACTOR = 1;
 export const NUL_FACTOR = 0;
 
 export class Choice {
-  private readonly weaknesses: Choice[] = [];
+  public icon: string;
 
   private readonly advantages: Choice[] = [];
+
+  private readonly weaknesses: Choice[] = [];
+
+  constructor(icon: string) {
+    this.icon = icon;
+  }
 
   public getResult(choice: Choice): number {
     if (this.weaknesses.includes(choice)) {
@@ -25,9 +31,9 @@ export class Choice {
   }
 }
 
-export const ROCK = new Choice();
-export const PAPER = new Choice();
-export const SCISSORS = new Choice();
+export const ROCK = new Choice('/images/icon-rock.svg');
+export const PAPER = new Choice('/images/icon-paper.svg');
+export const SCISSORS = new Choice('/images/icon-scissors.svg');
 
 ROCK.setWeaknesses([PAPER]);
 PAPER.setWeaknesses([SCISSORS]);
