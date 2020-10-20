@@ -1,16 +1,8 @@
 <template>
   <div>
-    Score: {{ score }}
-    Rules
-
-    You Picked
-    The House Picked
-
-    You Win
-    You Lose
-
-    Play Again
-
+    <ScorePanel></ScorePanel>
+    <ResultPanel v-if="hasPlayed"></ResultPanel>
+    <ChoicePanel v-else></ChoicePanel>
     <div class="attribution">
       Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
       Coded by <a href="#">Your Name Here</a>.
@@ -19,13 +11,22 @@
 </template>
 
 <script lang="ts">
-import { scoreStore } from '@/store';
+import { choiceStore } from '@/store';
 import { Vue, Component } from 'vue-property-decorator';
+import ChoicePanel from '@/components/ChoicePanel.vue';
+import ResultPanel from '@/components/ResultPanel.vue';
+import ScorePanel from '@/components/ScorePanel.vue';
 
-@Component
+@Component({
+  components: {
+    ChoicePanel,
+    ResultPanel,
+    ScorePanel,
+  },
+})
 export default class Main extends Vue {
-  get score(): number {
-    return scoreStore.score;
+  get hasPlayed() {
+    return choiceStore.hasPlayed;
   }
 }
 </script>
