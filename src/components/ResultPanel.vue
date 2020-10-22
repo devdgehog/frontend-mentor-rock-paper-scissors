@@ -8,7 +8,7 @@
       The House Picked
       <img :src="getHouseIcon" />
     </div>
-    <button @pointerup.stop="playAgain()">Play again</button>
+    <button @pointerup.stop="playAgain()" data-cy="play-again">Play again</button>
   </div>
 </template>
 

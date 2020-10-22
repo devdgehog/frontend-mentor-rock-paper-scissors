@@ -3,6 +3,7 @@
     <img
       v-for="(choice, i) in choices"
       :key="`choice-${i}`"
+      :data-cy="`choice-${i}`"
       :src="choice.icon"
       @pointerup.stop="storeUserChoiceAndPlay(choice)"
     />
