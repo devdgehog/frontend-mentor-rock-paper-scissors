@@ -4,6 +4,18 @@
   </div>
 </template>
 
+<script lang="ts">
+import { scoreStore } from '@/store';
+import { Vue, Component } from 'vue-property-decorator';
+
+@Component
+export default class App extends Vue {
+  beforeMount() {
+    scoreStore.loadScore();
+  }
+}
+</script>
+
 <style lang="scss">
 * {
   margin: 0;
