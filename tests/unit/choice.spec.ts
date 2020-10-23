@@ -18,4 +18,6 @@ describe('Choice', () => {
     expect(Choice.SCISSORS.getResult(Choice.PAPER)).toBe(Choice.WIN_FACTOR);
     expect(Choice.SCISSORS.getResult(Choice.SCISSORS)).toBe(Choice.NUL_FACTOR);
   });
+
+  // update with lizard and spock in a serious project
 });

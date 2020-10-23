@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { Choice, CHOICES } from '@/models/choice';
-import { choiceStore, scoreStore } from '@/store';
+import { choiceStore } from '@/store';
 import { Vue, Component } from 'vue-property-decorator';
 
 @Component

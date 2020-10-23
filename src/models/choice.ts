@@ -34,13 +34,20 @@ export class Choice {
 export const ROCK = new Choice('/images/icon-rock.svg');
 export const PAPER = new Choice('/images/icon-paper.svg');
 export const SCISSORS = new Choice('/images/icon-scissors.svg');
+export const LIZARD = new Choice('/images/icon-lizard.svg');
+export const SPOCK = new Choice('/images/icon-spock.svg');
 
-ROCK.setWeaknesses([PAPER]);
-PAPER.setWeaknesses([SCISSORS]);
-SCISSORS.setWeaknesses([ROCK]);
+ROCK.setWeaknesses([PAPER, SPOCK]);
+PAPER.setWeaknesses([SCISSORS, LIZARD]);
+SCISSORS.setWeaknesses([ROCK, SPOCK]);
+LIZARD.setWeaknesses([ROCK, SCISSORS]);
+SPOCK.setWeaknesses([PAPER, LIZARD]);
 
-ROCK.setAdvantages([SCISSORS]);
-PAPER.setAdvantages([ROCK]);
-SCISSORS.setAdvantages([PAPER]);
+ROCK.setAdvantages([SCISSORS, LIZARD]);
+PAPER.setAdvantages([ROCK, SPOCK]);
+SCISSORS.setAdvantages([PAPER, LIZARD]);
+LIZARD.setWeaknesses([PAPER, SPOCK]);
+SPOCK.setWeaknesses([ROCK, SCISSORS]);
 
-export const CHOICES = [ROCK, PAPER, SCISSORS];
+export const SIMPLE_CHOICES = [ROCK, PAPER, SCISSORS];
+export const CHOICES = [ROCK, PAPER, SCISSORS, LIZARD, SPOCK];
