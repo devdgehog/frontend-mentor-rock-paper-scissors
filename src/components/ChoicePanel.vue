@@ -12,7 +12,7 @@
     >
       <img :src="choice.icon"/>
       <div class="border"></div>
-  </div>
+    </div>
   </div>
 </template>
 
@@ -58,7 +58,7 @@ export default class ChoicePanel extends Vue {
     choiceHtmlElement.style.left = `${centerX + offsetX}px`;
     choiceHtmlElement.style.backgroundImage = `linear-gradient(135deg, ${choiceHtmlElement.getAttribute('data-color-from')}, ${choiceHtmlElement.getAttribute('data-color-to')})`;
     choiceHtmlElement.style.visibility = "visible";
-}
+  }
 
   mounted() {
     const choicePanelHtmlElement = this.$refs.choicesPanel as HTMLElement;
@@ -72,3 +72,43 @@ export default class ChoicePanel extends Vue {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.choices {
+  justify-self: center;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  width: 50vmin;
+  height: 50vmin;
+  background-image: url("/images/bg-pentagon.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  .choice {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    visibility: hidden;
+    border-radius: 50%;
+    border: calc(min(2vw, 1rem)) solid transparent;
+    cursor: pointer;
+  }
+
+  img {
+    z-index: 1;
+    width: 5vw;
+    max-width: 3rem;
+  }
+
+  .border {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #eee;
+  }
+
+}
+</style>

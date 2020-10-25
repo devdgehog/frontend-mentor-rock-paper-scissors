@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <main>
     <ScorePanel></ScorePanel>
     <ResultPanel v-if="hasPlayed"></ResultPanel>
     <ChoicePanel v-else></ChoicePanel>
     <div class="attribution">
-      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
-      Coded by <a href="#">Your Name Here</a>.
+      <span>Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.</span>
+      <span>Coded by <a href="https://twitter.com/devdgehog" target="_blank">devdgehog</a>.</span>
     </div>
-  </div>
+  </main>
 </template>
 
 <script lang="ts">
@@ -30,3 +30,27 @@ export default class Main extends Vue {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+main {
+  height: 100vh;
+  width: 80vw;
+  max-width: 60rem;
+  display: grid;
+  align-items: center;
+  justify-content: stretch;
+}
+
+.attribution {
+  display: grid;
+  justify-content: center;
+  justify-self: center;
+  a {
+    color: rgb(91, 206, 235);
+  }
+
+  span {
+    text-align: center;
+  }
+}
+</style>
