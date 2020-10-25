@@ -2,15 +2,22 @@ export const LOSE_FACTOR = -1;
 export const WIN_FACTOR = 1;
 export const NUL_FACTOR = 0;
 
+type ColorGradient = {
+  from: string;
+  to: string;
+}
+
 export class Choice {
   public icon: string;
+  public colorGradient: ColorGradient;
 
   private readonly advantages: Choice[] = [];
 
   private readonly weaknesses: Choice[] = [];
 
-  constructor(icon: string) {
+  constructor(icon: string, colorGradient: ColorGradient) {
     this.icon = icon;
+    this.colorGradient = colorGradient;
   }
 
   public getResult(choice: Choice): number {
@@ -31,11 +38,17 @@ export class Choice {
   }
 }
 
-export const ROCK = new Choice('/images/icon-rock.svg');
-export const PAPER = new Choice('/images/icon-paper.svg');
-export const SCISSORS = new Choice('/images/icon-scissors.svg');
-export const LIZARD = new Choice('/images/icon-lizard.svg');
-export const SPOCK = new Choice('/images/icon-spock.svg');
+const rockGradient = { from: "hsl(349, 71%, 52%)", to: "hsl(349, 70%, 56%)" };
+const paperGradient = { from: "hsl(230, 89%, 62%)", to: "hsl(230, 89%, 65%)" };
+const scissorsGradient = { from: "hsl(39, 89%, 49%)", to: "hsl(40, 84%, 53%)" };
+const lizardGradient = { from: "hsl(261, 73%, 60%)", to: "hsl(261, 72%, 63%)" };
+const spockGradient = { from: "hsl(189, 59%, 53%)", to: "hsl(189, 58%, 57%)" };
+
+export const ROCK = new Choice('/images/icon-rock.svg', rockGradient);
+export const PAPER = new Choice('/images/icon-paper.svg', paperGradient);
+export const SCISSORS = new Choice('/images/icon-scissors.svg', scissorsGradient);
+export const LIZARD = new Choice('/images/icon-lizard.svg', lizardGradient);
+export const SPOCK = new Choice('/images/icon-spock.svg', spockGradient);
 
 ROCK.setWeaknesses([PAPER, SPOCK]);
 PAPER.setWeaknesses([SCISSORS, LIZARD]);
@@ -50,4 +63,4 @@ LIZARD.setWeaknesses([PAPER, SPOCK]);
 SPOCK.setWeaknesses([ROCK, SCISSORS]);
 
 export const SIMPLE_CHOICES = [ROCK, PAPER, SCISSORS];
-export const CHOICES = [ROCK, PAPER, SCISSORS, LIZARD, SPOCK];
+export const CHOICES = [ROCK, PAPER, SCISSORS, SPOCK, LIZARD];
