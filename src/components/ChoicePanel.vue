@@ -6,12 +6,13 @@
       :data-cy="`choice-${index}`"
       :data-color-from="choice.colorGradient.from"
       :data-color-to="choice.colorGradient.to"
+      :data-shadow-color="choice.borderShadowColor"
       @pointerup.stop="storeUserChoiceAndPlay(choice)"
       ref="choices"
       class="choice"
     >
       <img :src="choice.icon"/>
-      <div class="border"></div>
+      <div class="inner-disk"></div>
     </div>
   </div>
 </template>
@@ -23,6 +24,8 @@ import { Vue, Component } from 'vue-property-decorator';
 
 @Component
 export default class ChoicePanel extends Vue {
+  private registeredCallbackOnResize: (() => void)[] = [];
+
   get choices(): Choice[] {
     return CHOICES;
   }
@@ -53,10 +56,10 @@ export default class ChoicePanel extends Vue {
     const offsetX = xDirectionFactor * distance;
     const offsetY = yDirectionFactor * distance;
 
-    console.log(offsetX, offsetY);
     choiceHtmlElement.style.top = `${centerY - offsetY}px`;
     choiceHtmlElement.style.left = `${centerX + offsetX}px`;
-    choiceHtmlElement.style.backgroundImage = `linear-gradient(135deg, ${choiceHtmlElement.getAttribute('data-color-from')}, ${choiceHtmlElement.getAttribute('data-color-to')})`;
+    choiceHtmlElement.style.backgroundImage = `linear-gradient(135deg, ${choiceHtmlElement.getAttribute('data-color-to')}, ${choiceHtmlElement.getAttribute('data-color-from')})`;
+    choiceHtmlElement.style.boxShadow = `0 0.5vmin ${choiceHtmlElement.getAttribute('data-shadow-color')}`;
     choiceHtmlElement.style.visibility = "visible";
   }
 
@@ -67,8 +70,17 @@ export default class ChoicePanel extends Vue {
       (choiceHtmlElements[index].childNodes[0] as HTMLImageElement).onload = () => {
         this.setPositionChoice(choiceHtmlElements[index], choicePanelHtmlElement, index);
       }
-      window.addEventListener("resize", () => this.setPositionChoice(choiceHtmlElements[index], choicePanelHtmlElement, index));
+      const resizeCallback = () => this.setPositionChoice(choiceHtmlElements[index], choicePanelHtmlElement, index);
+      this.registeredCallbackOnResize.push(resizeCallback);
+      window.addEventListener("resize", resizeCallback);
     }
+  }
+
+  beforeDestroy() {
+    for (const resizeCallback of this.registeredCallbackOnResize) {
+      window.removeEventListener("resize", resizeCallback);
+    }
+    this.registeredCallbackOnResize = [];
   }
 }
 </script>
@@ -79,8 +91,8 @@ export default class ChoicePanel extends Vue {
   display: grid;
   justify-content: center;
   align-items: center;
-  width: 50vmin;
-  height: 50vmin;
+  width: 45vmin;
+  height: 45vmin;
   background-image: url("/images/bg-pentagon.svg");
   background-repeat: no-repeat;
   background-size: contain;
@@ -92,8 +104,13 @@ export default class ChoicePanel extends Vue {
     position: absolute;
     visibility: hidden;
     border-radius: 50%;
-    border: calc(min(2vw, 1rem)) solid transparent;
+    border: 2vmin solid transparent;
+    box-shadow: 0 0.5vmin rgba(0, 0, 0, 15);
     cursor: pointer;
+
+    &:hover .inner-disk {
+      background-color: #fff;
+    }
   }
 
   img {
@@ -102,8 +119,9 @@ export default class ChoicePanel extends Vue {
     max-width: 3rem;
   }
 
-  .border {
+  .inner-disk {
     position: absolute;
+    box-shadow: inset 0 0.5vmin rgba(0, 0, 0, 0.15);
     width: 100%;
     height: 100%;
     border-radius: 50%;
