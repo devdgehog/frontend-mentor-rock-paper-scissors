@@ -26,6 +26,7 @@
       <div class="result__text-info">
         The House Picked
       </div>
+      <transition name="fade">
       <div
         class="choice house"
         :data-color-from="houseChoice.colorGradient.from"
@@ -37,6 +38,7 @@
         <img :src="houseChoice.icon" />
         <div :class="houseInnerDiskClasses"></div>
       </div>
+      </transition>
       <div class="choice house" v-show="!showHouseChoice"></div>
     </div>
   </div>
@@ -226,7 +228,7 @@ export default class ResultPanel extends Vue {
   height: 10vmin;
   border-radius: 50%;
   border: 2vmin solid transparent;
-  box-shadow: inset 0 0 2.5vmin 0 rgba(0, 0, 0, 0.35);;
+  box-shadow: inset 0 0 2.5vmin 0 rgba(0, 0, 0, 0.35);
 }
 
 img {

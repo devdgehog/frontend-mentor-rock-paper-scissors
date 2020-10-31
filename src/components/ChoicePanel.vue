@@ -105,7 +105,6 @@ export default class ChoicePanel extends Vue {
     visibility: hidden;
     border-radius: 50%;
     border: 2vmin solid transparent;
-    box-shadow: 0 0.5vmin rgba(0, 0, 0, 15);
     cursor: pointer;
 
     &:hover .inner-disk {

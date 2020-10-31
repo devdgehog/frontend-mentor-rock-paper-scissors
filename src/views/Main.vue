@@ -3,10 +3,7 @@
     <ScorePanel></ScorePanel>
     <ResultPanel v-if="hasPlayed"></ResultPanel>
     <ChoicePanel v-else></ChoicePanel>
-    <div class="attribution">
-      <span>Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.</span>
-      <span>Coded by <a href="https://twitter.com/devdgehog" target="_blank">devdgehog</a>.</span>
-    </div>
+    <Footer></Footer>
   </main>
 </template>
 
@@ -16,12 +13,14 @@ import { Vue, Component } from 'vue-property-decorator';
 import ChoicePanel from '@/components/ChoicePanel.vue';
 import ResultPanel from '@/components/ResultPanel.vue';
 import ScorePanel from '@/components/ScorePanel.vue';
+import Footer from '@/components/Footer.vue';
 
 @Component({
   components: {
     ChoicePanel,
     ResultPanel,
     ScorePanel,
+    Footer,
   },
 })
 export default class Main extends Vue {
@@ -39,18 +38,5 @@ main {
   display: grid;
   align-items: center;
   justify-content: stretch;
-}
-
-.attribution {
-  display: grid;
-  justify-content: center;
-  justify-self: center;
-  a {
-    color: rgb(91, 206, 235);
-  }
-
-  span {
-    text-align: center;
-  }
 }
 </style>
