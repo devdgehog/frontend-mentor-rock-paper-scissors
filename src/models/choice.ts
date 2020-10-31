@@ -63,8 +63,8 @@ SPOCK.setWeaknesses([PAPER, LIZARD]);
 ROCK.setAdvantages([SCISSORS, LIZARD]);
 PAPER.setAdvantages([ROCK, SPOCK]);
 SCISSORS.setAdvantages([PAPER, LIZARD]);
-LIZARD.setWeaknesses([PAPER, SPOCK]);
-SPOCK.setWeaknesses([ROCK, SCISSORS]);
+LIZARD.setAdvantages([PAPER, SPOCK]);
+SPOCK.setAdvantages([ROCK, SCISSORS]);
 
 export const SIMPLE_CHOICES = [ROCK, PAPER, SCISSORS];
 export const CHOICES = [ROCK, PAPER, SCISSORS, SPOCK, LIZARD];
