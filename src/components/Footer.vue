@@ -13,8 +13,8 @@
       <div class="overlayPanel" v-show="rulesOpen">
         <div class="dialog">
           <div class="dialog__text">Rules</div>
-          <img class="dialog__image" src="/images/image-rules-bonus.svg" />
-          <img class="dialog__closeButton" src="/images/icon-close.svg" @click.stop="hideRules" />
+          <img class="dialog__image" src="/images/image-rules-bonus.svg" alt="rules" />
+          <img class="dialog__closeButton" src="/images/icon-close.svg" @click.stop="hideRules" alt="close button" />
         </div>
       </div>
     </transition>

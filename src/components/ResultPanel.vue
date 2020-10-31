@@ -12,7 +12,7 @@
         :data-shadow-color="userChoice.borderShadowColor"
         ref="userChoice"
       >
-        <img :src="userChoice.icon" />
+        <img :src="`/images/icon-${userChoice.name}.svg`" :alt="houseChoice.name" />
         <div :class="userInnerDiskClasses"></div>
       </div>
     </div>
@@ -35,7 +35,7 @@
         ref="houseChoice"
         v-show="showHouseChoice"
       >
-        <img :src="houseChoice.icon" />
+        <img :src="`/images/icon-${houseChoice.name}.svg`" :alt="houseChoice.name" />
         <div :class="houseInnerDiskClasses"></div>
       </div>
       </transition>

@@ -1,6 +1,6 @@
 <template>
   <header>
-    <img src="/images/logo-bonus.svg" />
+    <img src="/images/logo-bonus.svg" alt="logo" />
     <div class="score-panel">
       <div class="score-label">SCORE</div>
       <div class="score-value">{{ score }}</div>

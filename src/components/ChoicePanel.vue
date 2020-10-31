@@ -11,7 +11,7 @@
       ref="choices"
       class="choice"
     >
-      <img :src="choice.icon"/>
+      <img :src="`/images/icon-${choice.name}.svg`" :alt="choice.name" />
       <div class="inner-disk"></div>
     </div>
   </div>
@@ -27,6 +27,7 @@ export default class ChoicePanel extends Vue {
   private registeredCallbackOnResize: (() => void)[] = [];
 
   get choices(): Choice[] {
+    console.log(CHOICES);
     return CHOICES;
   }
 
@@ -34,10 +35,6 @@ export default class ChoicePanel extends Vue {
     const houseChoiceIndex = Math.floor(Math.random() * CHOICES.length);
     choiceStore.setUserChoice(choice);
     choiceStore.setHouseChoice(CHOICES[houseChoiceIndex]);
-  }
-
-  get getIcon() {
-    return choiceStore.getUserChoice?.icon;
   }
 
   setPositionChoice(choiceHtmlElement: HTMLElement, choicePanelHtmlElement: HTMLElement, index: number) {
@@ -93,6 +90,8 @@ export default class ChoicePanel extends Vue {
   align-items: center;
   width: 45vmin;
   height: 45vmin;
+  min-width: 15rem;
+  min-height: 15rem;
   background-image: url("/images/bg-pentagon.svg");
   background-repeat: no-repeat;
   background-size: contain;
