@@ -2,22 +2,26 @@ export const LOSE_FACTOR = -1;
 export const WIN_FACTOR = 1;
 export const NUL_FACTOR = 0;
 
+type HslColor = string;
+
 type ColorGradient = {
-  from: string;
-  to: string;
+  from: HslColor;
+  to: HslColor;
 }
 
 export class Choice {
   public icon: string;
   public colorGradient: ColorGradient;
+  public borderShadowColor: HslColor;
 
   private readonly advantages: Choice[] = [];
 
   private readonly weaknesses: Choice[] = [];
 
-  constructor(icon: string, colorGradient: ColorGradient) {
+  constructor(icon: string, colorGradient: ColorGradient, borderShadowColor: HslColor) {
     this.icon = icon;
     this.colorGradient = colorGradient;
+    this.borderShadowColor = borderShadowColor;
   }
 
   public getResult(choice: Choice): number {
@@ -44,11 +48,11 @@ const scissorsGradient = { from: "hsl(39, 89%, 49%)", to: "hsl(40, 84%, 53%)" };
 const lizardGradient = { from: "hsl(261, 73%, 60%)", to: "hsl(261, 72%, 63%)" };
 const spockGradient = { from: "hsl(189, 59%, 53%)", to: "hsl(189, 58%, 57%)" };
 
-export const ROCK = new Choice('/images/icon-rock.svg', rockGradient);
-export const PAPER = new Choice('/images/icon-paper.svg', paperGradient);
-export const SCISSORS = new Choice('/images/icon-scissors.svg', scissorsGradient);
-export const LIZARD = new Choice('/images/icon-lizard.svg', lizardGradient);
-export const SPOCK = new Choice('/images/icon-spock.svg', spockGradient);
+export const ROCK = new Choice('/images/icon-rock.svg', rockGradient, "hsl(349, 70%, 35%)");
+export const PAPER = new Choice('/images/icon-paper.svg', paperGradient, "hsl(230, 89%, 35%)");
+export const SCISSORS = new Choice('/images/icon-scissors.svg', scissorsGradient, "hsl(40, 84%, 35%)");
+export const LIZARD = new Choice('/images/icon-lizard.svg', lizardGradient, "hsl(261, 72%, 35%)");
+export const SPOCK = new Choice('/images/icon-spock.svg', spockGradient, "hsl(189, 58%, 35%)");
 
 ROCK.setWeaknesses([PAPER, SPOCK]);
 PAPER.setWeaknesses([SCISSORS, LIZARD]);
