@@ -1,9 +1,9 @@
 <template>
   <header>
-    <img src="/images/logo-bonus.svg" alt="logo" />
+    <img src="/images/logo-bonus.svg" alt="logo of the application" />
     <div class="score-panel">
       <div class="score-label">SCORE</div>
-      <div class="score-value">{{ score }}</div>
+      <div class="score-value" :aria-label="`${score} points`">{{ score }}</div>
     </div>
   </header>
 </template>

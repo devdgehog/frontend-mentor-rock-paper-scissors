@@ -1,9 +1,9 @@
 <template>
   <footer>
     <div class="footer">
-      <div class="rulesButton" @click="showRules">
+      <button class="rulesButton" @click="showRules" aria-label="Display rules">
         RULES
-      </div>
+      </button>
       <div class="attribution">
         <span>Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.</span>
         <span>Coded by <a href="https://twitter.com/devdgehog" target="_blank">devdgehog</a>.</span>
@@ -12,9 +12,15 @@
     <transition name="fade">
       <div class="overlayPanel" v-show="rulesOpen">
         <div class="dialog">
-          <div class="dialog__text">Rules</div>
-          <img class="dialog__image" src="/images/image-rules-bonus.svg" alt="rules" />
-          <img class="dialog__closeButton" src="/images/icon-close.svg" @click.stop="hideRules" alt="close button" />
+          <h1 class="dialog__text">Rules</h1>
+          <img
+            class="dialog__image"
+            src="/images/image-rules-bonus.svg"
+            alt="rules of the game: scissors beats paper and lizard, paper beats stone and spock, stone beats lizard and scissors,
+              lizard beats spock and stone, spock beats scissors and stone" />
+          <button class="dialog__closeButton" @click.stop="hideRules">
+            <img src="/images/icon-close.svg" alt="close icon" aria-hidden="true" />
+          </button>
         </div>
       </div>
     </transition>
@@ -57,6 +63,9 @@ export default class Main extends Vue {
   grid-area: rulesButton;
   justify-self: center;
   padding: 0.5rem;
+  background-color: transparent;
+  color: #eee;
+  font-size: 1rem;
   border: 1px solid #eee;
   border-radius: 0.25rem;
   width: 5rem;
@@ -128,6 +137,11 @@ export default class Main extends Vue {
 .dialog__closeButton {
   grid-area: actions;
   justify-self: center;
+  place-content: center;
+
+  background-color: transparent;
+  border: none;
+
   cursor: pointer;
 
   @media (min-width: 60rem) {
@@ -141,8 +155,7 @@ export default class Main extends Vue {
   left: 0;
   z-index: 2;
   display: grid;
-  align-items: stretch;
-  justify-items: stretch;
+  place-items: stretch;
   height: 100vh;
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.15);

@@ -1,6 +1,6 @@
 <template>
   <div class="choices" ref="choicesPanel">
-    <div
+    <button
       v-for="(choice, index) in choices"
       :key="`choice-${index}`"
       :data-cy="`choice-${index}`"
@@ -10,10 +10,11 @@
       @pointerup.stop="storeUserChoiceAndPlay(choice)"
       ref="choices"
       class="choice"
+      :aria-label="`Select ${choice.name}`"
     >
-      <img :src="`/images/icon-${choice.name}.svg`" :alt="choice.name" />
-      <div class="inner-disk"></div>
-    </div>
+      <img :src="`/images/icon-${choice.name}.svg`" :alt="`${choice.name} image`" aria-hidden="true" />
+      <div class="inner-disk" aria-hidden="true"></div>
+    </button>
   </div>
 </template>
 
@@ -27,7 +28,6 @@ export default class ChoicePanel extends Vue {
   private registeredCallbackOnResize: (() => void)[] = [];
 
   get choices(): Choice[] {
-    console.log(CHOICES);
     return CHOICES;
   }
 
@@ -43,8 +43,8 @@ export default class ChoicePanel extends Vue {
     const choiceBoundingRect = choiceHtmlElement.getBoundingClientRect();
     const choicePanelBoundingRect = choicePanelHtmlElement.getBoundingClientRect();
     const distance = 0.5 * choicePanelBoundingRect.height;
-    choiceHtmlElement.style.width = `${ 0.5 * distance }px`;
-    choiceHtmlElement.style.height = `${ 0.5 * distance }px`;
+    choiceHtmlElement.style.width = `${ 0.6 * distance }px`;
+    choiceHtmlElement.style.height = `${ 0.6 * distance }px`;
 
     const centerX = choicePanelBoundingRect.x + 0.5 * (choicePanelBoundingRect.width - choiceHtmlElement.getBoundingClientRect().width);
     const centerY = choicePanelBoundingRect.y + 0.5 * (choicePanelBoundingRect.height - choiceHtmlElement.getBoundingClientRect().height);

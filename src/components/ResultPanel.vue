@@ -19,7 +19,7 @@
     <transition name="fade">
     <div class="result announcement" v-show="showResult">
       <div class="result__text result__text-info">{{announcement}}</div>
-      <div class="result__playAgain" @pointerup.stop="playAgain()" data-cy="play-again">Play again</div>
+      <button class="result__playAgain" @pointerup.stop="playAgain()" data-cy="play-again">Play again</button>
     </div>
     </transition>
     <div class="result house">
@@ -45,7 +45,6 @@
 </template>
 
 <script lang="ts">
-import { Choice, CHOICES } from '@/models/choice';
 import { choiceStore, scoreStore } from '@/store';
 import { Vue, Component } from 'vue-property-decorator';
 
